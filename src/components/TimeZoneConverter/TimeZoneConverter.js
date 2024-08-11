@@ -47,10 +47,11 @@ class TimeZoneConverter extends Component {
   }
 
   render() {
-    const {isDarkMode, timeZones} = this.state
+    const {isDarkMode, timeZones, currentTime} = this.state
+    console.log(currentTime)
     return (
       <TimeZoneContext.Provider
-        value={{isDarkMode, onChangeMode: this.onChangeMode}}
+        value={{isDarkMode, onChangeMode: this.onChangeMode, currentTime}}
       >
         <TimeZoneContext.Consumer>
           {provider => {
@@ -61,19 +62,19 @@ class TimeZoneConverter extends Component {
                 <TimeZoneNavContainer>
                   <NavUnorderList>
                     <NavListEl>
-                      <NavAnchorEl href='#converter'>Converter</NavAnchorEl>
+                      <NavAnchorEl href="#converter">Converter</NavAnchorEl>
                     </NavListEl>
                     <NavListEl>
-                      <NavAnchorEl href='#time-diff'>
+                      <NavAnchorEl href="#time-diff">
                         Time Difference
                       </NavAnchorEl>
                     </NavListEl>
                     <NavListEl>
-                      <NavAnchorEl href='#table-view'>Table</NavAnchorEl>
+                      <NavAnchorEl href="#table-view">Table</NavAnchorEl>
                     </NavListEl>
                     {timeZones.map((NavTimezone, index) => (
                       <NavListEl key={index}>
-                        <NavAnchorEl href='#table-view'>
+                        <NavAnchorEl href="#table-view">
                           {NavTimezone}
                         </NavAnchorEl>
                       </NavListEl>

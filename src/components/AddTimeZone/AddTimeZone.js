@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import 'react-datepicker/dist/react-datepicker.css'
 import TimeZoneContext from '../../TimeZoneContext/TimeZoneContext'
 import {
   FaCalendarAlt,
@@ -24,8 +25,15 @@ import {
   IconButton,
 } from './AddTimeStyledComponent'
 
+const formatDate = date => {
+  if (!date) return ''
+  const options = {month: 'short', day: 'numeric', year: 'numeric'}
+  return new Intl.DateTimeFormat('en-US', options).format(date)
+}
+
 const AddTimeZone = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [currentTime, setCurrentTime] = useState(new Date())
 
   return (
     <TimeZoneContext.Consumer>
@@ -37,10 +45,7 @@ const AddTimeZone = () => {
         return (
           <AddTimeZoneContainer isDarkMode={isDarkMode}>
             <TimeZoneInputContainer isDarkMode={isDarkMode}>
-              <SearchContainer
-                data-testid="searchButton"
-                isDarkMode={isDarkMode}
-              >
+              <SearchContainer isDarkMode={isDarkMode}>
                 <SearchInput
                   type="search"
                   placeholder="Add Time Zone, City or Town"
@@ -60,19 +65,19 @@ const AddTimeZone = () => {
               isDarkMode={isDarkMode}
               isMenuOpen={isMenuOpen}
             >
-              <DatePickerWrapper isDarkMode={isDarkMode}>
+              <DatePickerWrapper htmlFor="calender" isDarkMode={isDarkMode}>
                 <DateInput
-                  type="text"
-                  value="Aug 11, 2024"
-                  readOnly
-                  isDarkMode={isDarkMode}
+                  value={formatDate(currentTime)}
+                  locale="es"
+                  onChange={date => setCurrentTime(date)}
+                  id="calender"
                 />
                 <CalendarIcon />
               </DatePickerWrapper>
 
               <IconButtonWrapper isDarkMode={isDarkMode}>
                 <IconButton isDarkMode={isDarkMode}>
-                  <FaPlusSquare />
+                  <FaCalendarAlt />
                 </IconButton>
                 <IconButton isDarkMode={isDarkMode}>
                   <FaExchangeAlt />
