@@ -99,5 +99,9 @@ export const ConverterContainer = styled.div`
     width: 90vw;
     background-color: rgb(233, 230, 230);
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
     
 `
