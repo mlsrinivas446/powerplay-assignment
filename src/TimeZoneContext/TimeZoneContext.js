@@ -2,7 +2,7 @@ import React from 'react'
 
 const TimeZoneContext = React.createContext({
   isDarkMode: false,
-  changeMode: () => {},
+  onChangeMode: () => {},
 })
 
 export default TimeZoneContext

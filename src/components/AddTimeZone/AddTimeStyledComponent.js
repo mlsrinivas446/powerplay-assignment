@@ -6,8 +6,12 @@ export const AddTimeZoneContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80vw;
-  border-bottom: 1px solid #e1e1e1;
+  width: 90vw;
+  border: 1px solid #e1e1e1;
+  min-height: 10vh;
+  padding: 5px;
+  background-color: ${props =>
+    props.isDarkMode ? '#181818' : 'rgb(226, 221, 221)'};
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
@@ -36,6 +40,7 @@ export const SearchContainer = styled.div`
   border: 1px solid #94a3b8;
   border-radius: 4px;
   width: 40vw;
+  background-color: ${props => (props.isDarkMode ? '#26272a' : '#f9f9f9')};
 
   @media screen and (min-width: 478px) {
     width: 50vw;
@@ -55,6 +60,7 @@ export const SearchInput = styled.input`
   outline: none;
   min-width: 50vw;
   padding: 10px 8px;
+  background-color: ${props => (props.isDarkMode ? '#26272a' : '#f9f9f9')};
 
   @media screen and (min-width: 478px) {
     font-size: 16px;
@@ -83,7 +89,6 @@ export const HamburgerContainer = styled.div`
   align-items: center;
   padding-right: 8px;
   padding-left: 8px;
-  
 
   @media screen and (min-width: 478px) {
     display: none;
@@ -94,7 +99,7 @@ export const HamburgerButton = styled(RxHamburgerMenu)`
   color: #1e90ff;
   font-size: 30px;
 
-  @media screen and  (min-width: 478px) {
+  @media screen and (min-width: 478px) {
     font-size: 35px;
   }
 `
@@ -108,24 +113,22 @@ export const StyledFaPlus = styled(FaPlus)`
 `
 
 export const DateAndInputButtonsContainer = styled.div`
-  display: flex;
+  display: ${props => (props.isMenuOpen ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
   width: 80vw;
   margin-top: 10px;
 
   @media screen and (min-width: 478px) {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
-   
-   
   }
+
   @media screen and (min-width: 768px) {
     margin-top: 0px;
     margin-left: 10px;
-   
   }
-  
 `
 
 export const DatePickerWrapper = styled.div`
@@ -135,6 +138,7 @@ export const DatePickerWrapper = styled.div`
   border-radius: 4px;
   width: 80vw;
   margin-bottom: 10px;
+  background-color: ${props => (props.isDarkMode ? 'transparent' : '#f9f9f9')};
 
   @media (min-width: 478px) {
     width: 35vw;
@@ -154,13 +158,14 @@ export const DateInput = styled.input`
   flex-grow: 1;
   min-width: 60vw;
   padding: 10px 8px;
+  background-color: ${props => (props.isDarkMode ? '#26272a' : '#f9f9f9')};
 
-  @media screen and  (min-width: 478px) {
+  @media screen and (min-width: 478px) {
     font-size: 16px;
     min-width: 25vw;
   }
 
-  @media screen and  (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     font-size: 16px;
     min-width: 13vw;
   }
@@ -186,6 +191,8 @@ export const CalendarIcon = styled(FaCalendarAlt)`
 
 export const IconButtonWrapper = styled.div`
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   width: 80vw;
   margin-bottom: 10px;
 
@@ -194,7 +201,8 @@ export const IconButtonWrapper = styled.div`
     margin-bottom: 0;
   }
   @media (min-width: 768px) {
-    width: 25vw;
+    width: 40%;
+    margin-left: 8px;
   }
 `
 
@@ -202,7 +210,7 @@ export const IconButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background-color: ${props => (props.isDarkMode ? '#26272a' : '#f9f9f9')};
   border: 1px solid #ccc;
   border-radius: 2px;
   cursor: pointer;

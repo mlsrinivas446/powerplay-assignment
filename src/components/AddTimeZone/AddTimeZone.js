@@ -1,3 +1,4 @@
+import React, {useState} from 'react'
 import TimeZoneContext from '../../TimeZoneContext/TimeZoneContext'
 import {
   FaCalendarAlt,
@@ -24,45 +25,62 @@ import {
 } from './AddTimeStyledComponent'
 
 const AddTimeZone = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
   return (
     <TimeZoneContext.Consumer>
       {provider => {
-        const {isDarkMode} = provider
+        const {isDarkMode, onChangeMode} = provider
+
+        const changeMode = () => onChangeMode()
+
         return (
           <AddTimeZoneContainer isDarkMode={isDarkMode}>
             <TimeZoneInputContainer isDarkMode={isDarkMode}>
-              <SearchContainer data-testid="searchButton">
+              <SearchContainer
+                data-testid="searchButton"
+                isDarkMode={isDarkMode}
+              >
                 <SearchInput
                   type="search"
                   placeholder="Add Time Zone, City or Town"
+                  isDarkMode={isDarkMode}
                 />
-                <SearchButton>
+                <SearchButton isDarkMode={isDarkMode}>
                   <StyledFaPlus />
                 </SearchButton>
               </SearchContainer>
 
               <HamburgerContainer>
-                <HamburgerButton />
+                <HamburgerButton onClick={() => setIsMenuOpen(!isMenuOpen)} />
               </HamburgerContainer>
             </TimeZoneInputContainer>
 
-            <DateAndInputButtonsContainer>
-              <DatePickerWrapper>
-                <DateInput type="text" value="Aug 11, 2024" readOnly />
+            <DateAndInputButtonsContainer
+              isDarkMode={isDarkMode}
+              isMenuOpen={isMenuOpen}
+            >
+              <DatePickerWrapper isDarkMode={isDarkMode}>
+                <DateInput
+                  type="text"
+                  value="Aug 11, 2024"
+                  readOnly
+                  isDarkMode={isDarkMode}
+                />
                 <CalendarIcon />
               </DatePickerWrapper>
 
-              <IconButtonWrapper>
-                <IconButton>
+              <IconButtonWrapper isDarkMode={isDarkMode}>
+                <IconButton isDarkMode={isDarkMode}>
                   <FaPlusSquare />
                 </IconButton>
-                <IconButton>
+                <IconButton isDarkMode={isDarkMode}>
                   <FaExchangeAlt />
                 </IconButton>
-                <IconButton>
+                <IconButton isDarkMode={isDarkMode}>
                   <FaLink />
                 </IconButton>
-                <IconButton>
+                <IconButton onClick={changeMode} isDarkMode={isDarkMode}>
                   <FaMoon />
                 </IconButton>
               </IconButtonWrapper>

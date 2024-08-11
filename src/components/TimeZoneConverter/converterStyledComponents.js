@@ -67,17 +67,22 @@ export const NavListEl = styled.li`
     list-style-type: none;
     padding-left: 8px;
     padding-right: 8px;
-    font-size: 16px;
+    font-size: 15px;
     color: #428bca;
     cursor: pointer;
+    flex: 1;
+    min-width: 130px;
+    text-align: center;
+    overflow-x: scroll;
+    scrollbar-width: none;
     
     @media screen and (min-width: 478px){
-        font-size: 18px;
+        font-size: 16px;
         padding-left: 10px;
         padding-right: 10px;
     }
     @media screen and (min-width: 768px){
-        font-size: 20px;
+        font-size: 18px;
         padding-left: 12px;
         padding-right: 12px;
     }
@@ -97,11 +102,10 @@ export const ConverterContainer = styled.div`
     border: 1px solid #e1e1e1;
     min-height: 80vh;
     width: 90vw;
-    background-color: rgb(233, 230, 230);
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 15px;
+    background-color: ${props => (props.isDarkMode ? '#181818' : '#f9f9f9')};
     
 `
