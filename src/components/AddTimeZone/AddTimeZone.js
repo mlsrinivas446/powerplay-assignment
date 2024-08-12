@@ -1,13 +1,7 @@
 import React, {useState} from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import TimeZoneContext from '../../TimeZoneContext/TimeZoneContext'
-import {
-  FaCalendarAlt,
-  FaExchangeAlt,
-  FaLink,
-  FaMoon,
-  FaPlusSquare,
-} from 'react-icons/fa'
+import {FaCalendarAlt, FaExchangeAlt, FaLink, FaMoon} from 'react-icons/fa'
 import {
   AddTimeZoneContainer,
   TimeZoneInputContainer,
@@ -23,22 +17,28 @@ import {
   CalendarIcon,
   IconButtonWrapper,
   IconButton,
-} from './AddTimeStyledComponent'
+} from './AddTimeStyledComponents'
 
-const formatDate = date => {
-  if (!date) return ''
-  const options = {month: 'short', day: 'numeric', year: 'numeric'}
-  return new Intl.DateTimeFormat('en-US', options).format(date)
-}
-
-const AddTimeZone = () => {
+const AddTimeZone = ({onAdd}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [currentTime, setCurrentTime] = useState(new Date())
+  const [searchValue, setSearchValue] = useState('')
+
+  const handleSearchChange = event => {
+    setSearchValue(event.target.value)
+  }
+
+  const handleAddClick = () => {
+    // Here you would typically look up the time zone by the search value
+    // For now, let's just simulate adding a new time zone
+    const newTimeZone = {id: searchValue, zone: searchValue}
+    onAdd(newTimeZone)
+    setSearchValue('')
+  }
 
   return (
     <TimeZoneContext.Consumer>
       {provider => {
-        const {isDarkMode, onChangeMode} = provider
+        const {isDarkMode, onChangeMode, currentTime} = provider
 
         const changeMode = () => onChangeMode()
 
@@ -50,8 +50,10 @@ const AddTimeZone = () => {
                   type="search"
                   placeholder="Add Time Zone, City or Town"
                   isDarkMode={isDarkMode}
+                  value={searchValue}
+                  onChange={handleSearchChange}
                 />
-                <SearchButton isDarkMode={isDarkMode}>
+                <SearchButton isDarkMode={isDarkMode} onClick={handleAddClick}>
                   <StyledFaPlus />
                 </SearchButton>
               </SearchContainer>
@@ -67,10 +69,9 @@ const AddTimeZone = () => {
             >
               <DatePickerWrapper htmlFor="calender" isDarkMode={isDarkMode}>
                 <DateInput
-                  value={formatDate(currentTime)}
-                  locale="es"
-                  onChange={date => setCurrentTime(date)}
+                  value={currentTime}
                   id="calender"
+                  isDarkMode={isDarkMode}
                 />
                 <CalendarIcon />
               </DatePickerWrapper>

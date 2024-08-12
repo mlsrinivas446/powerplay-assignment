@@ -143,7 +143,7 @@ export const DatePickerWrapper = styled.label`
   border-radius: 4px;
   width: 80vw;
   margin-bottom: 10px;
-  background-color: ${props => (props.isDarkMode ? 'transparent' : '#f9f9f9')};
+  background-color: ${props => (props.isDarkMode ? '#26272a' : '#f9f9f9')};
 
   @media screen and (min-width: 478px) {
     width: 35vw;
